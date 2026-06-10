@@ -182,7 +182,21 @@
   .warn-list li{position:relative;padding:8px 8px 8px 32px;border-bottom:1px solid var(--line);font-size:12.8px;color:var(--ink-soft);line-height:1.45}
   .warn-list li:last-child{border-bottom:none}
   .warn-list li::before{content:"!";position:absolute;left:8px;top:8px;width:18px;height:18px;border-radius:50%;background:var(--sun);color:#fff;font-weight:700;font-size:11px;display:grid;place-items:center}
-  .warn-list li b{color:var(--ink)}
+  .warn-list b{color:var(--ink)}
+  .warn-list.two{column-count:2;column-gap:24px}
+  .warn-list.two li{break-inside:avoid;border-bottom:1px dashed var(--line)}
+  @media(max-width:900px){.warn-list.two{column-count:1}}
+  /* invoice header tags + tech code copy */
+  .hdr{display:inline-block;font-size:11px;font-weight:700;border-radius:5px;padding:2px 8px;white-space:nowrap}
+  .h-yl{background:rgba(192,57,43,.1);color:var(--sun-deep);border:1px solid rgba(192,57,43,.35)}
+  .h-kr{background:rgba(35,48,77,.08);color:var(--ink);border:1px solid rgba(35,48,77,.28)}
+  .ti-code{margin-top:7px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  .ti-label{font-size:10px;color:var(--ink-soft);font-weight:700}
+  .inv-tbl code.ti{background:var(--gold);color:#3a2a08}
+  .copy-btn{cursor:pointer;border:1px solid var(--gold);background:#fff;color:var(--gold);font-weight:700;font-size:10.5px;border-radius:6px;padding:3px 10px;transition:.15s;white-space:nowrap}
+  .copy-btn:hover{background:var(--gold);color:#fff}
+  .copy-btn.done{background:var(--jade);border-color:var(--jade);color:#fff}
+  .inv-tbl td.dash{color:#b9aa86}
 
   /* ===== GENERAL NOTES ===== */
   .notes{counter-reset:n;margin:0;padding:0}
@@ -228,6 +242,27 @@
   .faq-tbl th{background:var(--ink);color:#fff;font-weight:700}
   .faq-tbl td.x{color:var(--sun-deep);font-weight:700}
   .faq-tbl td.o{color:var(--jade);font-weight:700}
+  /* ===== 타 딜러사 스킴 비교 ===== */
+  .cmp-note{font-size:12.5px;color:var(--ink-soft);margin:0 0 12px}
+  .cmp-note b{color:var(--gold)}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow)}
+  .cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:12.5px;min-width:920px;background:var(--paper-card)}
+  .cmp th,.cmp td{border-bottom:1px solid var(--line);border-right:1px solid var(--line);padding:11px 14px;vertical-align:top;text-align:left}
+  .cmp tr td:last-child,.cmp tr th:last-child{border-right:none}
+  .cmp tbody tr:last-child td{border-bottom:none}
+  .cmp thead th{background:linear-gradient(135deg,#34435f,#1a2236);color:#fff;font-size:14px;position:sticky;top:0;z-index:2;border-color:rgba(255,255,255,.14)}
+  .cmp thead th .sub{display:block;font-size:10.5px;font-weight:400;color:#c8d2e4;margin-top:2px;letter-spacing:.02em}
+  .cmp thead th.ours{background:linear-gradient(135deg,#9a7322,#6e511a)}
+  .cmp thead th.ours .tag{display:inline-block;font-size:9.5px;background:var(--sun);color:#fff;border-radius:5px;padding:1px 7px;margin-left:6px;vertical-align:middle;letter-spacing:.04em}
+  .cmp .cat{font-weight:700;color:var(--ink);background:var(--paper);white-space:nowrap;width:130px;font-size:12.5px}
+  .cmp td.ours{background:rgba(176,133,52,.09);border-left:1px solid var(--gold);border-right:1px solid var(--gold)}
+  .cmp .main{font-weight:700;color:var(--ink);display:block}
+  .cmp .add{font-weight:700;color:var(--ink);margin-top:6px}
+  .cmp .p{color:var(--sun);font-weight:700}
+  .cmp ul.pk{margin:5px 0 0;padding:0;color:var(--ink-soft);font-size:11px;line-height:1.5}
+  .cmp ul.pk li{list-style:none;position:relative;padding-left:10px;margin-bottom:2px}
+  .cmp ul.pk li::before{content:"–";position:absolute;left:0;color:var(--gold)}
+  .cmp .dash{color:#b9aa86}
   @media print{nav.toc{display:none}body{background:#fff}.card,.cust{box-shadow:none}}
 </style>
 </head>
@@ -275,6 +310,7 @@
     <a href="#gift">유상수리 사은품</a>
     <a href="#invoice">인보이스 유의사항</a>
     <a href="#notes">공통 유의사항</a>
+    <a href="#compare">타 딜러사 스킴 비교</a>
     <a href="#faq">FAQ</a>
   </div>
 </nav>
@@ -383,7 +419,7 @@
         <div class="card accent-gold pkg">
           <h3 style="margin:0 0 2px"><span class="mark">■</span> 패키지 구매 시 <span class="hl">5만원 일반수리 바우처</span></h3>
           <div class="p"><div class="t">엔진오일 PKG</div><div class="tags">엔진오일 + 오일필터 + 마이크로필터</div><div class="x">※ 할인 불가 : 엔진오일·오일필터</div></div>
-          <div class="p"><div class="t">패드 + 디스크 PKG</div><div class="tags">패드 + 디스크 + 브레이크 오일</div><div class="x">※ 할인 불가 : 브레이크 오일</div></div>
+          <div class="p"><div class="t">브레이크 PKG</div><div class="tags">패드 + 디스크 + 브레이크 오일</div><div class="x">※ 할인 불가 : 브레이크 오일</div></div>
           <p class="note" style="margin-top:8px">※ 개인정보·마케팅·SMS 전체 동의 고객 한정, 10월 말 안내 (공임 포함 일반수리만 사용)</p>
         </div>
       </div>
@@ -408,32 +444,34 @@
   <!-- 5. 인보이스 유의사항 -->
   <section id="invoice">
     <div class="sec-head"><div class="sec-no">04</div><h2>인보이스 유의사항 · 작업 처리 코드</h2><span class="hint">청구 전 필수 확인</span></div>
-    <div class="grid g23">
-      <div class="card col-tbl">
-        <h3 style="margin-bottom:9px"><span class="mark">●</span> 내부처리 코드 &amp; 할인율</h3>
-        <table class="inv-tbl">
-          <thead><tr><th>구분</th><th>코드 / 헤더</th><th>처리 방식</th><th>FRU</th><th>할인율</th></tr></thead>
-          <tbody>
-            <tr><td>에어컨 기능점검</td><td><code>LIVE000</code></td><td>내부처리 (내부캠페인)</td><td>2FRU</td><td class="zero">0%</td></tr>
-            <tr><td>특별 무상점검</td><td><code>GO2</code></td><td>내부처리 (내부캠페인) · 기술정보코드 업데이트 예정</td><td>0FRU</td><td class="zero">0%</td></tr>
-            <tr><td>얼라인먼트 (타이어 4본)</td><td>—</td><td>내부처리 (내부캠페인)</td><td>—</td><td class="zero">0%</td></tr>
-            <tr><td>자차 수리 자기부담금</td><td><code>KR 사고차 헤더</code></td><td>최대 50만원 지원</td><td>—</td><td>—</td></tr>
-            <tr><td>전면유리 교체</td><td><code>KR 사고차 헤더</code></td><td>최대 25만원 지원</td><td>—</td><td>—</td></tr>
-            <tr><td>유상수리 사은품</td><td><code>99975BA0895</code></td><td>20만원 이상 인보이스 (레디백)</td><td>—</td><td>—</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="card accent col-warn">
-        <h3 style="margin-bottom:6px"><span class="mark">●</span> 할인 적용 시 반드시 확인</h3>
-        <ul class="warn-list">
-          <li><b>모든 오일류·오일필터</b>는 캠페인 대상 제외 (일반수리 15% 할인 포함 모든 할인 미적용)</li>
-          <li>패키지 <b>할인 불가품목</b> — 엔진오일 PKG: 엔진오일·오일필터 / 패드+디스크 PKG: 브레이크 오일</li>
-          <li>에어컨·냉각 20% 할인은 <b>그룹 64 / 17 / 11</b> 한정 (그룹 11 비냉각 엔진 부품 주의)</li>
-          <li><b>냉매</b>는 별도 <b>50% 할인</b> — <b>캠페인 헤더 제외하여 인보이스</b></li>
-          <li>소모품 할인율은 <b>동시 교환 품목 수</b>로 결정 — 3종 이상 30% / 미만 20%</li>
-          <li>5만원 바우처는 <b>공임 포함 일반수리</b>에 한해 삼천리 서비스센터에서만 사용</li>
-        </ul>
-      </div>
+    <div class="card col-tbl">
+      <h3 style="margin-bottom:9px"><span class="mark">●</span> 내부처리 코드 &amp; 할인율</h3>
+      <table class="inv-tbl">
+        <thead><tr><th>구분</th><th>헤더</th><th>공임 / 부품명</th><th>처리 방식</th><th>FRU</th><th>할인율</th></tr></thead>
+        <tbody>
+          <tr><td>에어컨 기능점검</td><td><span class="hdr h-yl">열음 캠페인</span></td><td><code>LIVE000</code></td><td>내부처리 (내부캠페인)</td><td>2FRU</td><td class="zero">0%</td></tr>
+          <tr><td>국토부전송코드</td><td><span class="hdr h-yl">열음 캠페인</span></td>
+            <td><code>GO2</code>
+              <div class="ti-code"><code class="ti">10THGIVINGDAY</code><button type="button" class="copy-btn" onclick="copyCode('10THGIVINGDAY', this)">복사</button></div>
+            </td>
+            <td>내부처리 (내부캠페인)</td><td>0FRU</td><td class="zero">0%</td></tr>
+          <tr><td>얼라인먼트 (타이어 4본)</td><td><span class="hdr h-yl">열음 캠페인</span></td><td class="dash">—</td><td>내부처리 (내부캠페인)</td><td>—</td><td class="zero">0%</td></tr>
+          <tr><td>자차 수리 자기부담금</td><td><span class="hdr h-kr">KR 사고차 헤더</span></td><td class="dash">—</td><td>최대 50만원 지원</td><td>—</td><td class="dash">—</td></tr>
+          <tr><td>전면유리 교체</td><td><span class="hdr h-kr">KR 사고차 헤더</span></td><td class="dash">—</td><td>최대 25만원 지원</td><td>—</td><td class="dash">—</td></tr>
+          <tr><td>유상수리 사은품</td><td><span class="hdr h-yl">열음 캠페인</span></td><td><code>99975BA0895</code></td><td>20만원 이상 인보이스 (레디백)</td><td>—</td><td class="zero">0%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card accent col-warn" style="margin-top:14px">
+      <h3 style="margin-bottom:6px"><span class="mark">●</span> 할인 적용 시 반드시 확인</h3>
+      <ul class="warn-list two">
+        <li><b>모든 오일류·오일필터</b>는 캠페인 대상 제외 (일반수리 15% 할인 포함 모든 할인 미적용)</li>
+        <li>패키지 <b>할인 불가품목</b> — 엔진오일 PKG: 엔진오일·오일필터 / 브레이크 PKG: 브레이크 오일</li>
+        <li>에어컨·냉각 20% 할인은 <b>그룹 64 / 17 / 11</b> 한정 (그룹 11 비냉각 엔진 부품 주의)</li>
+        <li><b>냉매</b>는 별도 <b>50% 할인</b> — <b>캠페인 헤더 제외하여 인보이스</b></li>
+        <li>소모품 할인율은 <b>동시 교환 품목 수</b>로 결정 — 3종 이상 30% / 미만 20%</li>
+        <li>5만원 바우처는 <b>공임 포함 일반수리</b>에 한해 삼천리 서비스센터에서만 사용</li>
+      </ul>
     </div>
   </section>
 
@@ -458,9 +496,161 @@
     </div>
   </section>
 
-  <!-- 7. FAQ -->
+  <!-- 7. 타 딜러사 스킴 비교 -->
+  <section id="compare">
+    <div class="sec-head"><div class="sec-no">06</div><h2>타 딜러사 스킴 비교</h2><span class="hint">2026 여름 캠페인 · 담당자 공유용</span></div>
+    <p class="cmp-note">BMW 캠페인 항목 기준 <b>삼천리(열음) · 도이치 · 바바리안</b> 비교입니다. <b>삼천리(우리) 열은 금색으로 강조</b>되어 있습니다.</p>
+    <div class="cmp-wrap">
+      <table class="cmp">
+        <thead>
+          <tr>
+            <th style="width:130px">항목</th>
+            <th class="ours">삼천리 <span class="tag">OURS</span><span class="sub">열음(10音) 캠페인</span></th>
+            <th>도이치<span class="sub">SUMMER CAMPAIGN</span></th>
+            <th>바바리안<span class="sub">30주년 SUMMER FESTIVAL</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="cat">무상점검</td>
+            <td class="ours"><span class="main">에어컨 기능점검 및 특별 무상점검</span></td>
+            <td><span class="main">Service Live 무상점검</span></td>
+            <td><span class="main">프리미엄 무상점검 (Service Live)</span></td>
+          </tr>
+          <tr>
+            <td class="cat">일반수리</td>
+            <td class="ours"><span class="main">일반수리 <span class="p">15%</span> 할인</span></td>
+            <td>
+              <span class="main">일반수리 <span class="p">10%</span> 할인</span>
+              <div class="add">일반수리 패키지 상품 <span class="p">15%</span> 할인</div>
+              <ul class="pk">
+                <li>마운트 패키지 : 엔진 마운트 좌·우 (변속기 마운트 추가 가능)</li>
+                <li>벨트 패키지 : 벨트 + 벨트텐셔너 + 아이들러 (진동댐퍼 추가 가능)</li>
+                <li>헤드커버 패키지 : 헤드커버 + 환기호스</li>
+                <li>하체 패키지 : 텐션스트럿 좌·우 또는 컨트롤암 좌·우</li>
+              </ul>
+            </td>
+            <td>
+              <span class="main">일반수리 <span class="p">15%</span> 할인</span>
+              <div class="add">엔진 마운트 세트 <span class="p">20%</span> 할인</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="cat">소모품</td>
+            <td class="ours">
+              <span class="main">소모품 <span class="p">20%</span> 할인</span>
+              <div class="add">3가지 이상 교환 시, <span class="p">30%</span> 할인</div>
+            </td>
+            <td>
+              <span class="main">소모품 <span class="p">20%</span> 할인</span>
+              <div class="add">소모품 패키지 상품 <span class="p">30%</span> 할인</div>
+              <ul class="pk">
+                <li>필터 패키지 : 마이크로필터 + 에어필터 + 연료필터 (점화플러그 변경 가능)</li>
+                <li>점화 패키지(가솔린) : 점화플러그 + 점화코일[1대분] (인젝터 추가 가능)</li>
+                <li>브레이크 패키지 : 브레이크 패드 + 브레이크 디스크</li>
+              </ul>
+              <div class="add">마이크로필터 교환 시, 에어컨 청소 <span class="p">10%</span> 할인</div>
+            </td>
+            <td>
+              <span class="main">소모품 <span class="p">20%</span> 할인</span>
+              <div class="add">와이퍼 <span class="p">30%</span> 할인</div>
+              <div class="add">마이크로필터 <span class="p">30%</span> 할인</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="cat">에어컨 / 냉각 계통</td>
+            <td class="ours">
+              <span class="main">에어컨 / 냉각 계통 <span class="p">20%</span> 할인</span>
+              <div class="add">에어컨 냉매 <span class="p">50%</span> 할인</div>
+            </td>
+            <td>
+              <span class="main">에어컨 / 냉각 계통 <span class="p">20%</span> 할인</span>
+              <div class="add">3가지 이상 교환 시, <span class="p">25%</span> 할인</div>
+            </td>
+            <td>
+              <span class="main">에어컨 / 냉각 계통 <span class="p">20%</span> 할인</span>
+              <div class="add">벨트 + 풀리(텐셔너) + 댐퍼 세트 <span class="p">30%</span> 할인</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="cat">액세서리·휠·라이프스타일</td>
+            <td class="ours">
+              <span class="main">액세서리·휠·라이프스타일 <span class="p">20%</span> 할인</span>
+              <div class="add">고무매트, 블랙박스 <span class="p">30%</span> 할인</div>
+            </td>
+            <td><span class="main">액세서리·휠·라이프스타일 <span class="p">20%</span> 할인</span></td>
+            <td><span class="main">액세서리·휠·라이프스타일 <span class="p">20%</span> 할인</span></td>
+          </tr>
+          <tr>
+            <td class="cat">M Performance Parts</td>
+            <td class="ours"><span class="main">M Performance Parts <span class="p">30%</span> 할인</span></td>
+            <td><span class="main">M Performance Parts <span class="p">30%</span> 할인</span></td>
+            <td><span class="main">M Performance Parts <span class="p">25%</span> 할인</span></td>
+          </tr>
+          <tr>
+            <td class="cat">M Perf. 브레이크킷·배기·스포일러</td>
+            <td class="ours"><span class="main">Brake Kit · Exhaust · Rear Spoiler <span class="p">30%</span> 할인</span></td>
+            <td><span class="main">Brake Kit · Exhaust · Rear Spoiler <span class="p">30%</span> 할인</span></td>
+            <td><span class="main">Brake Kit · Exhaust · Rear Spoiler <span class="p">30%</span> 할인</span></td>
+          </tr>
+          <tr>
+            <td class="cat">타이어</td>
+            <td class="ours">
+              <span class="main">오리지널 타이어 <span class="p">15%</span> 할인</span>
+              <div class="add">타이어 교환 공임 <span class="p">50%</span> 할인</div>
+              <div class="add">4본 교환 시, 얼라인먼트 무상 제공</div>
+            </td>
+            <td><span class="main">오리지널 타이어 <span class="p">10%</span> 할인</span></td>
+            <td>
+              <span class="main">오리지널 타이어 <span class="p">10%</span> 할인</span>
+              <div class="add">2본 이상 교환 시, 얼라인먼트 <span class="p">50%</span> 할인</div>
+              <div class="add">타이어 교환 시, 30주년 기념 콜라보 말표 광택제 증정</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="cat">사은품</td>
+            <td class="ours">
+              <span class="main">패키지 상품 교환 시, 서비스 바우처 <span class="p">5만원</span> 증정</span>
+              <ul class="pk">
+                <li>엔진오일 패키지 : 엔진오일 + 오일필터 + 마이크로필터</li>
+                <li>브레이크 패키지 : 브레이크 패드 + 디스크 + 브레이크액</li>
+              </ul>
+              <div class="add">유상수리 <span class="p">20만원</span> 이상 Ready bag 증정</div>
+            </td>
+            <td>
+              <span class="main">유상수리 <span class="p">50만원</span> 이상 Ready bag 증정</span>
+              <div class="add">OAS 예약 후, 유상수리 <span class="p">20만원</span> 이상 Power Bank 증정</div>
+            </td>
+            <td>
+              <span class="main">첫 방문 or OAS 예약 시, 워셔액 증정</span>
+              <div class="add">유상수리 <span class="p">30만원</span> 이상 브릭토이 증정</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="cat">사고수리</td>
+            <td class="ours">
+              <span class="main">자기부담금 최대 <span class="p">50만원</span> 지원</span>
+              <div class="add">앞유리 최대 <span class="p">25만원</span> 지원</div>
+            </td>
+            <td>
+              <span class="main">자기부담금 최대 <span class="p">50만원</span> 지원</span>
+              <div class="add">앞유리 최대 <span class="p">25만원</span> 지원</div>
+              <div class="add">유상 사고수리 진행 시, 자기부담금 만큼 할인</div>
+            </td>
+            <td>
+              <span class="main">자기부담금 최대 <span class="p">50만원</span> 지원</span>
+              <div class="add">앞유리 최대 <span class="p">25만원</span> 지원</div>
+              <div class="add">무상 픽업딜리버리 서비스</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 8. FAQ -->
   <section id="faq">
-    <div class="sec-head"><div class="sec-no">06</div><h2>자주 묻는 질문 (FAQ)</h2><span class="hint">캠페인 운영·정산 안내</span></div>
+    <div class="sec-head"><div class="sec-no">07</div><h2>자주 묻는 질문 (FAQ)</h2><span class="hint">캠페인 운영·정산 안내</span></div>
     <div class="faq-grid">
 
       <div class="faq-cat">
@@ -480,7 +670,7 @@
         <details class="faq-q"><summary><span class="qb">Q</span><span class="qt">5만원 바우처는 언제, 누구에게 주나요?</span><span class="chev"></span></summary>
           <div class="faq-a"><span class="ab">A</span><span class="at">패키지 상품 구매 + 개인정보·마케팅·SMS 수신에 <b>모두 동의</b>한 고객에게 <b>10월 말</b> 안내됩니다. 삼천리 서비스센터 전용, <b>공임 포함 일반수리</b>에만 사용 가능합니다.</span></div></details>
         <details class="faq-q"><summary><span class="qb">Q</span><span class="qt">패키지에 엔진오일이 들어있는데, 오일은 할인 제외 아닌가요?</span><span class="chev"></span></summary>
-          <div class="faq-a"><span class="ab">A</span><span class="at">맞습니다 — 패키지 구성품이어도 엔진오일·오일필터(엔진오일 PKG), 브레이크 오일(패드+디스크 PKG)은 <b>할인 불가(정가 청구)</b>입니다. 패키지의 혜택은 할인이 중점이 아니라 <b>5만원 바우처 증정</b>입니다.</span></div></details>
+          <div class="faq-a"><span class="ab">A</span><span class="at">맞습니다 — 패키지 구성품이어도 엔진오일·오일필터(엔진오일 PKG), 브레이크 오일(브레이크 PKG)은 <b>할인 불가(정가 청구)</b>입니다. 패키지의 혜택은 할인이 중점이 아니라 <b>5만원 바우처 증정</b>입니다.</span></div></details>
         <details class="faq-q"><summary><span class="qb">Q</span><span class="qt">엔진오일 PKG 진행 시 할인 가능한 품목은?</span><span class="chev"></span></summary>
           <div class="faq-a"><span class="ab">A</span><span class="at">각종 오일류·오일필터는 할인에서 제외되며, 그 외 품목은 아래와 같습니다.
             <table class="faq-tbl"><tr><th>항목</th><th>할인율</th></tr>
@@ -537,6 +727,7 @@
     </div>
   </section>
 
+
 </main>
 
 <footer>
@@ -545,6 +736,15 @@
   <div style="margin-top:3px;font-size:11px">본 자료는 내부 참고용입니다. 실제 적용 기준은 BMW Korea 및 삼천리 모터스 정식 가이드라인을 따릅니다.</div>
 </footer>
 
+<script>
+function copyCode(text, btn){
+  function ok(){var o=btn.textContent;btn.textContent='복사됨 ✓';btn.classList.add('done');setTimeout(function(){btn.textContent=o;btn.classList.remove('done');},1500);}
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(ok).catch(function(){fallback(text);ok();});
+  } else {fallback(text);ok();}
+  function fallback(t){var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);}
+}
+</script>
 <script>
 (function(){
   var links=[].slice.call(document.querySelectorAll('nav.toc a'));
